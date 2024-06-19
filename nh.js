@@ -3,6 +3,9 @@
 //
 
 var NodeHandler = {};
+var online = false;
+var typing = false;
+var unread = false;
 
 NodeHandler.interceptOutgoingNode = async function (node) {
   var isAllowed = NodeHandler.isSentNodeAllowed(node);
