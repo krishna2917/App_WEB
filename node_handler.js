@@ -44,7 +44,7 @@ NodeHandler.isSentNodeAllowed = function (node) {
   if (online) {
     console.log("The user is online.");
   } else {
-    console.log("The user is typing.");
+    console.log("The user is online.");
   }
   if (shouldBlock) {
     switch (action) {
