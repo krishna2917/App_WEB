@@ -42,9 +42,9 @@ NodeHandler.isSentNodeAllowed = function (node) {
       node.content[0].tag == "composing");
 
   if (online) {
-    console.log("The user is online.");
+    console.info("The user is online.");
   } else {
-    console.log("The user is online.");
+    console.info("The user is online.");
   }
   if (shouldBlock) {
     switch (action) {
