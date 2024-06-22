@@ -1,10 +1,3 @@
-Object.defineProperty(window.document, "hidden", {
-  get: function () {
-    return false;
-  },
-  configurable: true,
-});
-
 console.info("AtivaAposAcharJquery in.js");
 
 var AtivaAposAcharJquery = {
@@ -12,9 +5,11 @@ var AtivaAposAcharJquery = {
     try {
       (async function () {
         async function Qd() {
+          console.info("Qd");
           const { chat: g, wa: u, presence: f } = window.WUPE;
 
           f().removeAllListeners();
+          console.info("f()" + f());
           clearInterval(bc);
           bc = setInterval(() => {
             g.chat().forEach((k) => {
@@ -34,9 +29,7 @@ var AtivaAposAcharJquery = {
                   B = document.querySelector(
                     `[title="${g.get(h).formattedTitle}"]:not([ld="true"])`
                   );
-                  console.info(B);
                   title = B.getAttribute("title");
-                  console.info(title);
                 } catch (P) {
                   title = await g.getNameStatus(k.id);
                 }
@@ -46,67 +39,45 @@ var AtivaAposAcharJquery = {
                   .catch((P) => console.log(P));
                 e = await g.getNameStatus(k.id);
 
-                l ? console.info(e + " online") : console.info(e + "Offline");
-                p && p.eurl
-                  ? p.eurl
-                  : "data:image/png;base64,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";
+                var pic = p && p.eurl ? p.eurl : "null";
 
-                var img = new Image();
-                img.crossOrigin = "anonymous";
-                img.onload = function () {
-                  var canvas = document.createElement("canvas");
-                  var ctx = canvas.getContext("2d");
-                  canvas.width = 1000;
-                  canvas.height = 1000;
-                  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                  var resizedBase64 = canvas.toDataURL("image/jpeg", 0.5);
+                var type_name = l ? "online" : "Offline";
 
+                if (pic == "null") {
                   let jsonObject = {
                     number: k.id.user,
                     name: title,
-                    type: "Online",
-                    logo: resizedBase64,
+                    type: type_name,
+                    logo: "",
                   };
                   let jsonString = JSON.stringify(jsonObject);
                   console.info(jsonString);
-                };
-                img.src = p.eurl;
+                } else {
+                  var img = new Image();
+                  img.crossOrigin = "anonymous";
+                  img.onload = function () {
+                    var canvas = document.createElement("canvas");
+                    var ctx = canvas.getContext("2d");
+                    canvas.width = 1000;
+                    canvas.height = 1000;
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    var resizedBase64 = canvas.toDataURL("image/jpeg", 0.5);
+
+                    let jsonObject = {
+                      number: k.id.user,
+                      name: title,
+                      type: type_name,
+                      logo: resizedBase64,
+                    };
+                    let jsonString = JSON.stringify(jsonObject);
+                    console.info(jsonString);
+                  };
+                  img.src = pic;
+                }
               } catch (h) {
                 console.log(h);
               }
           });
-
-          try {
-            const k = localStorage,
-              l = g.chat().add,
-              h = JSON.parse(k.getItem("contatosrecebenotifi") || "[]"),
-              p = (e) => {
-                e =
-                  g.chat().get(e) ||
-                  new g.createUser(e, {
-                    intentionallyUsePrivateConstructor: !0,
-                  });
-                l({ id: e }, { merge: true, add: true }).then((P) =>
-                  P.presence.subscribe()
-                );
-              },
-              q = "false" === k.getItem("notificontatosespe");
-            q &&
-              g
-                .chat()
-                .filter(({ __x_isUser: e }) => e)
-                .forEach(({ id: e }) => g.chat().get(e).presence.subscribe());
-            u.allContacts()
-              .filter(
-                ({ isBroadcast: e, isMyContact: P, id: z }) =>
-                  !e && P && z && "WhatsApp" !== u.getContact(z).pushname
-              )
-              .forEach(({ id: e }) => {
-                (q || h.includes(e._serialized)) && p(e);
-              });
-          } catch (k) {
-            console.log(k);
-          }
 
           WUPE.wa.allChats().forEach(function (f) {
             f.__x_isUser && WUPE.chat.chat().get(f.id).presence.subscribe();
