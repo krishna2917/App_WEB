@@ -171,7 +171,7 @@ AtivaAposAcharJquery = {
             },
           },
           init: function () {
-            if ("undefined" == typeof Majordomo) return null;
+           
             window.clearInterval(Yb.interval);
             Yb.majordomo = new Majordomo(
               window,
