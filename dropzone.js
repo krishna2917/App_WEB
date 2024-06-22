@@ -15,334 +15,14 @@
 let inter123 = setInterval(() => {
   try {
     clearInterval(inter123);
-
+    console.info("dropzone.js clearInterval");
     (() => {
       var e,
         t,
         a,
         n,
         i = {
-          7: (e) => {
-            "use strict";
-            var t,
-              a = "object" == typeof Reflect ? Reflect : null,
-              n =
-                a && "function" == typeof a.apply
-                  ? a.apply
-                  : function (e, t, a) {
-                      return Function.prototype.apply.call(e, t, a);
-                    };
-            t =
-              a && "function" == typeof a.ownKeys
-                ? a.ownKeys
-                : Object.getOwnPropertySymbols
-                ? function (e) {
-                    return Object.getOwnPropertyNames(e).concat(
-                      Object.getOwnPropertySymbols(e)
-                    );
-                  }
-                : function (e) {
-                    return Object.getOwnPropertyNames(e);
-                  };
-            var i =
-              Number.isNaN ||
-              function (e) {
-                return e != e;
-              };
-            function r() {
-              r.init.call(this);
-            }
-            (e.exports = r),
-              (e.exports.once = function (e, t) {
-                return new Promise(function (a, n) {
-                  function i(a) {
-                    e.removeListener(t, r), n(a);
-                  }
-                  function r() {
-                    "function" == typeof e.removeListener &&
-                      e.removeListener("error", i),
-                      a([].slice.call(arguments));
-                  }
-                  b(e, t, r, { once: !0 }),
-                    "error" !== t &&
-                      (function (e, t, a) {
-                        "function" == typeof e.on &&
-                          b(e, "error", t, { once: !0 });
-                      })(e, i);
-                });
-              }),
-              (r.EventEmitter = r),
-              (r.prototype._events = void 0),
-              (r.prototype._eventsCount = 0),
-              (r.prototype._maxListeners = void 0);
-            var o = 10;
-            function s(e) {
-              if ("function" != typeof e)
-                throw new TypeError(
-                  'The "listener" argument must be of type Function. Received type ' +
-                    typeof e
-                );
-            }
-            function l(e) {
-              return void 0 === e._maxListeners
-                ? r.defaultMaxListeners
-                : e._maxListeners;
-            }
-            function c(e, t, a, n) {
-              var i, r, o, c;
-              if (
-                (s(a),
-                void 0 === (r = e._events)
-                  ? ((r = e._events = Object.create(null)),
-                    (e._eventsCount = 0))
-                  : (void 0 !== r.newListener &&
-                      (e.emit("newListener", t, a.listener ? a.listener : a),
-                      (r = e._events)),
-                    (o = r[t])),
-                void 0 === o)
-              )
-                (o = r[t] = a), ++e._eventsCount;
-              else if (
-                ("function" == typeof o
-                  ? (o = r[t] = n ? [a, o] : [o, a])
-                  : n
-                  ? o.unshift(a)
-                  : o.push(a),
-                (i = l(e)) > 0 && o.length > i && !o.warned)
-              ) {
-                o.warned = !0;
-                var d = new Error(
-                  "Possible EventEmitter memory leak detected. " +
-                    o.length +
-                    " " +
-                    String(t) +
-                    " listeners added. Use emitter.setMaxListeners() to increase limit"
-                );
-                (d.name = "MaxListenersExceededWarning"),
-                  (d.emitter = e),
-                  (d.type = t),
-                  (d.count = o.length),
-                  (c = d),
-                  console && console.warn && console.warn(c);
-              }
-              return e;
-            }
-            function d() {
-              if (!this.fired)
-                return (
-                  this.target.removeListener(this.type, this.wrapFn),
-                  (this.fired = !0),
-                  0 === arguments.length
-                    ? this.listener.call(this.target)
-                    : this.listener.apply(this.target, arguments)
-                );
-            }
-            function u(e, t, a) {
-              var n = {
-                  fired: !1,
-                  wrapFn: void 0,
-                  target: e,
-                  type: t,
-                  listener: a,
-                },
-                i = d.bind(n);
-              return (i.listener = a), (n.wrapFn = i), i;
-            }
-            function W(e, t, a) {
-              var n = e._events;
-              if (void 0 === n) return [];
-              var i = n[t];
-              return void 0 === i
-                ? []
-                : "function" == typeof i
-                ? a
-                  ? [i.listener || i]
-                  : [i]
-                : a
-                ? (function (e) {
-                    for (var t = new Array(e.length), a = 0; a < t.length; ++a)
-                      t[a] = e[a].listener || e[a];
-                    return t;
-                  })(i)
-                : m(i, i.length);
-            }
-            function p(e) {
-              var t = this._events;
-              if (void 0 !== t) {
-                var a = t[e];
-                if ("function" == typeof a) return 1;
-                if (void 0 !== a) return a.length;
-              }
-              return 0;
-            }
-            function m(e, t) {
-              for (var a = new Array(t), n = 0; n < t; ++n) a[n] = e[n];
-              return a;
-            }
-            function b(e, t, a, n) {
-              if ("function" == typeof e.on) n.once ? e.once(t, a) : e.on(t, a);
-              else {
-                if ("function" != typeof e.addEventListener)
-                  throw new TypeError(
-                    'The "emitter" argument must be of type EventEmitter. Received type ' +
-                      typeof e
-                  );
-                e.addEventListener(t, function i(r) {
-                  n.once && e.removeEventListener(t, i), a(r);
-                });
-              }
-            }
-            Object.defineProperty(r, "defaultMaxListeners", {
-              enumerable: !0,
-              get: function () {
-                return o;
-              },
-              set: function (e) {
-                if ("number" != typeof e || e < 0 || i(e))
-                  throw new RangeError(
-                    'The value of "defaultMaxListeners" is out of range. It must be a non-negative number. Received ' +
-                      e +
-                      "."
-                  );
-                o = e;
-              },
-            }),
-              (r.init = function () {
-                (void 0 !== this._events &&
-                  this._events !== Object.getPrototypeOf(this)._events) ||
-                  ((this._events = Object.create(null)),
-                  (this._eventsCount = 0)),
-                  (this._maxListeners = this._maxListeners || void 0);
-              }),
-              (r.prototype.setMaxListeners = function (e) {
-                if ("number" != typeof e || e < 0 || i(e))
-                  throw new RangeError(
-                    'The value of "n" is out of range. It must be a non-negative number. Received ' +
-                      e +
-                      "."
-                  );
-                return (this._maxListeners = e), this;
-              }),
-              (r.prototype.getMaxListeners = function () {
-                return l(this);
-              }),
-              (r.prototype.emit = function (e) {
-                for (var t = [], a = 1; a < arguments.length; a++)
-                  t.push(arguments[a]);
-                var i = "error" === e,
-                  r = this._events;
-                if (void 0 !== r) i = i && void 0 === r.error;
-                else if (!i) return !1;
-                if (i) {
-                  var o;
-                  if ((t.length > 0 && (o = t[0]), o instanceof Error)) throw o;
-                  var s = new Error(
-                    "Unhandled error." + (o ? " (" + o.message + ")" : "")
-                  );
-                  throw ((s.context = o), s);
-                }
-                var l = r[e];
-                if (void 0 === l) return !1;
-                if ("function" == typeof l) n(l, this, t);
-                else {
-                  var c = l.length,
-                    d = m(l, c);
-                  for (a = 0; a < c; ++a) n(d[a], this, t);
-                }
-                return !0;
-              }),
-              (r.prototype.addListener = function (e, t) {
-                return c(this, e, t, !1);
-              }),
-              (r.prototype.on = r.prototype.addListener),
-              (r.prototype.prependListener = function (e, t) {
-                return c(this, e, t, !0);
-              }),
-              (r.prototype.once = function (e, t) {
-                return s(t), this.on(e, u(this, e, t)), this;
-              }),
-              (r.prototype.prependOnceListener = function (e, t) {
-                return s(t), this.prependListener(e, u(this, e, t)), this;
-              }),
-              (r.prototype.removeListener = function (e, t) {
-                var a, n, i, r, o;
-                if ((s(t), void 0 === (n = this._events))) return this;
-                if (void 0 === (a = n[e])) return this;
-                if (a === t || a.listener === t)
-                  0 == --this._eventsCount
-                    ? (this._events = Object.create(null))
-                    : (delete n[e],
-                      n.removeListener &&
-                        this.emit("removeListener", e, a.listener || t));
-                else if ("function" != typeof a) {
-                  for (i = -1, r = a.length - 1; r >= 0; r--)
-                    if (a[r] === t || a[r].listener === t) {
-                      (o = a[r].listener), (i = r);
-                      break;
-                    }
-                  if (i < 0) return this;
-                  0 === i
-                    ? a.shift()
-                    : (function (e, t) {
-                        for (; t + 1 < e.length; t++) e[t] = e[t + 1];
-                        e.pop();
-                      })(a, i),
-                    1 === a.length && (n[e] = a[0]),
-                    void 0 !== n.removeListener &&
-                      this.emit("removeListener", e, o || t);
-                }
-                return this;
-              }),
-              (r.prototype.off = r.prototype.removeListener),
-              (r.prototype.removeAllListeners = function (e) {
-                var t, a, n;
-                if (void 0 === (a = this._events)) return this;
-                if (void 0 === a.removeListener)
-                  return (
-                    0 === arguments.length
-                      ? ((this._events = Object.create(null)),
-                        (this._eventsCount = 0))
-                      : void 0 !== a[e] &&
-                        (0 == --this._eventsCount
-                          ? (this._events = Object.create(null))
-                          : delete a[e]),
-                    this
-                  );
-                if (0 === arguments.length) {
-                  var i,
-                    r = Object.keys(a);
-                  for (n = 0; n < r.length; ++n)
-                    "removeListener" !== (i = r[n]) &&
-                      this.removeAllListeners(i);
-                  return (
-                    this.removeAllListeners("removeListener"),
-                    (this._events = Object.create(null)),
-                    (this._eventsCount = 0),
-                    this
-                  );
-                }
-                if ("function" == typeof (t = a[e])) this.removeListener(e, t);
-                else if (void 0 !== t)
-                  for (n = t.length - 1; n >= 0; n--)
-                    this.removeListener(e, t[n]);
-                return this;
-              }),
-              (r.prototype.listeners = function (e) {
-                return W(this, e, !0);
-              }),
-              (r.prototype.rawListeners = function (e) {
-                return W(this, e, !1);
-              }),
-              (r.listenerCount = function (e, t) {
-                return "function" == typeof e.listenerCount
-                  ? e.listenerCount(t)
-                  : p.call(e, t);
-              }),
-              (r.prototype.listenerCount = p),
-              (r.prototype.eventNames = function () {
-                return this._eventsCount > 0 ? t(this._events) : [];
-              });
-          },
+          7: (e) => {},
           759: (e, t, a) => {
             "use strict";
             const n = a(276);
@@ -431,153 +111,7 @@ let inter123 = setInterval(() => {
               return n.ChatCollection;
             }
           },
-          191: (e, t, a) => {
-            "use strict";
-            a.d(t, { O6: () => W, t5: () => m });
-            var n = a(658),
-              i = a(509),
-              r = (a(974), a(772)),
-              o = a(812),
-              s = a(242);
-            const l = (0, n.WhatsUpLoad)("WAWebUserPrefsMeUser"),
-              c = (0, n.WhatsUpLoad)("WAWebMsgKey"),
-              d = (0, n.WhatsUpLoad)("WAWebWidFactory"),
-              u = (0, n.WhatsUpLoad)("WAWebMsgKeyNewId");
-            async function W(e) {
-              const t = l.getMaybeMeUser();
-              let a, n;
-              return (
-                (a = e.id),
-                a.isGroup && (n = d.toUserWid(t)),
-                new c({
-                  from: t,
-                  to: a,
-                  id: await Promise.resolve(u.getMsgKeyNewSHA256Id()),
-                  participant: n,
-                  selfDir: "out",
-                })
-              );
-            }
-            (0, n.WhatsUpLoad)("WAWebGetEphemeralFieldsMsgActionsUtils"),
-              (0, n.WhatsUpLoad)("WATimeUtils"),
-              (0, n.WhatsUpLoad)("useWAWebLinkPreview"),
-              (0, n.WhatsUpLoad)("WAWebLinkPreviewChatAction"),
-              (0, n.WhatsUpLoad)("WAWebLinkPreviewCache"),
-              (0, n.WhatsUpLoad)("WAWebBackendJobsCommon")
-                .mediaTypeFromProtobuf;
-            const p = (0, n.WhatsUpLoad)("WAWebMediaOpaqueData").createFromData;
-            async function m(e, t, a = {}) {
-              let l =
-                "status@broadcast" === e ? (0, s.Y)() : (0, r.Gw)().get(e);
-              l ||
-                ((0, r.Gw)().add(
-                  {
-                    id: new o.k(e, {
-                      intentionallyUsePrivateConstructor: !0,
-                    }),
-                  },
-                  { merge: !0, add: !0 }
-                ),
-                (l = r.Gw.get(e)));
-              const c = await (0, n.convertToFile)(t, a.mimetype, a.filename),
-                d = (c.name, await p(c, c.type)),
-                u = {
-                  isPtt: a.isPtt,
-                  asDocument: a.asDocument,
-                  asGif: a.asGif,
-                  isAudio: "audio" === a.type,
-                  asSticker: a.asSticker,
-                  precomputedFields: { duration: null, waveform: null },
-                };
-              let W;
-              "audio" === a.type
-                ? ((u.isPtt = a.isPtt),
-                  (u.precomputedFields = await (async function (e, t) {
-                    if (e.isPtt)
-                      try {
-                        const e = await t.arrayBuffer(),
-                          a = new AudioContext(),
-                          n = await a.decodeAudioData(e),
-                          i = n.getChannelData(0),
-                          r = 64,
-                          o = Math.floor(i.length / r),
-                          s = [];
-                        for (let e = 0; e < r; e++) {
-                          const t = o * e;
-                          let a = 0;
-                          for (let e = 0; e < o; e++) a += Math.abs(i[t + e]);
-                          s.push(a / o);
-                        }
-                        const l = Math.pow(Math.max(...s), -1),
-                          c = s.map((e) => e * l),
-                          d = new Uint8Array(c.map((e) => Math.floor(100 * e)));
-                        return {
-                          duration: Math.floor(n.duration),
-                          waveform: d,
-                        };
-                      } catch (e) {}
-                  })(a, c)))
-                : "image" === a.type
-                ? (W = a.isViewOnce)
-                : "video" === a.type
-                ? (u.asGif = a.isGif)
-                : "document" === a.type
-                ? (u.asDocument = !0)
-                : "sticker" === a.type && (u.asSticker = !0);
-              const m = (0, n.WhatsUpLoad)("WAWebMedia").prepRawMedia(d, u);
-              let b = {};
-              if (
-                (a.markIsRead &&
-                  (await (0, n.WhatsUpLoad)(
-                    "WAWebUpdateUnreadChatAction"
-                  ).sendSeen(l, !1)),
-                await m.waitForPrep(),
-                a.wulp)
-              ) {
-                let e = (
-                  await (0, n.WhatsUpLoad)(
-                    "WAWebGenMinimalLinkPreviewChatAction"
-                  ).genMinimalLinkPreview2(a.wulp)
-                ).data;
-                b.ctwaContext = {
-                  description: e.description,
-                  title: e.title,
-                  sourceUrl: e.canonicalUrl,
-                  thumbnailUrl: "data:image/jpeg;base64," + e.thumbnail,
-                  renderLargerThumbnail: !0,
-                  mediaType: 1,
-                  thumbnail: e.thumbnail,
-                };
-              }
-              if (l.isGroup && a.tagall) {
-                var h = (0, i.r)(l.id).participants.map((e) => e.id);
-                b.mentionedJidList = h;
-              }
-              if ("status@broadcast" == e)
-                return {
-                  result: await (0, n.WhatsUpLoad)(
-                    "WAWebWhatsUpPlusStatusMedia"
-                  ).sendMediaMsgToChat(m, l, {
-                    addEvenWhilePreparing: !1,
-                    caption: a.caption,
-                    type: a.type,
-                    backgroundColor:
-                      null != a.backgroundColor ? a.backgroundColor : null,
-                  }),
-                };
-              {
-                const e = await (0, n.WhatsUpLoad)(
-                  "WAWebMediaPrep"
-                ).sendMediaMsgToChat(m, l, {
-                  addEvenWhilePreparing: !1,
-                  caption: a.caption,
-                  type: a.type,
-                  ...b,
-                });
-                return a.waitForAck && (await e), { sendMsgResult: e };
-              }
-            }
-          },
+          191: (e, t, a) => {},
           766: (e, t, a) => {
             "use strict";
             a.r(t),
@@ -880,7 +414,7 @@ let inter123 = setInterval(() => {
                         let r = {};
                         t &&
                           (r = await B(t).catch((e) => {
-                            console.log(e);
+                            console.info(e);
                           }));
                         const o = { url: n, data: { ...i, ...r } };
                         G.push(o), a(o);
@@ -1225,137 +759,12 @@ let inter123 = setInterval(() => {
           794: (e, t, a) => {
             "use strict";
             a.d(t, { I: () => r });
-            var n = a(7);
-            class i extends n.EventEmitter {}
-            const r = new i();
           },
-          456: (e, t, a) => {
-            "use strict";
-            var n = a(658),
-              i = a(794),
-              r = a(743);
-            const o = (0, n.WhatsUpLoad)(
-                "WAWebPollsUpsertVotesModelCollectionMsgAction"
-              ),
-              s = o.upsertVotesModelCollection,
-              l = (0, n.WhatsUpLoad)("WAWebMsgCollection").MsgCollection,
-              c =
-                ((0, n.WhatsUpLoad)("WAWebHandleGroupNotificationV2"),
-                (0, n.WhatsUpLoad)("WAWebGroupExitJob")),
-              d = c?.leaveGroup;
-            let u = { id: "", votes: [] };
-            const W = Date.now();
-            function p(e) {
-              const t = new Date(e);
-              return `${m(t.getDate())}/${m(
-                t.getMonth() + 1
-              )}/${t.getFullYear()} ${m(t.getHours())}:${m(t.getMinutes())}:${m(
-                t.getSeconds()
-              )}`;
-            }
-            function m(e) {
-              return e < 10 ? "0" + e : e;
-            }
-            (c.leaveGroup = (0, n.wrapf)(d, async (e, ...t) => {
-              let [a] = t;
-              try {
-                return i.I.emit("saiu_g", a), e(...t);
-              } catch (e) {}
-            })),
-              (o.upsertVotesModelCollection = (0, n.wrapf)(
-                s,
-                async (e, ...t) => {
-                  let [a, n] = t;
-                  try {
-                    if (a[0].senderTimestampMs < W) return e(...t);
-                    const n = await l.get(a[0].parentMsgKey),
-                      r = [];
-                    for (const e of a[0].selectedOptionLocalIds)
-                      r[e] = n.pollOptions.filter((t) => t.localId == e)[0];
-                    let o = {};
-                    if (
-                      ((o.id = a[0].parentMsgKey.id),
-                      (o.votes = a[0].selectedOptionLocalIds),
-                      JSON.stringify(o) !== JSON.stringify(u))
-                    ) {
-                      (u.id = a[0].parentMsgKey.id),
-                        (u.votes = a[0].selectedOptionLocalIds);
-                      let e = a[0];
-                      i.I.emit("vt", {
-                        msgId: e.parentMsgKey,
-                        chatId: e.parentMsgKey.remote,
-                        selectedOptions: r,
-                        timestamp: p(e.senderTimestampMs),
-                        data_atual: p(W),
-                        sender: e.sender,
-                      });
-                    }
-                    return e(...t);
-                  } catch (e) {}
-                }
-              ));
-            const b = (0, n.WhatsUpLoad)("WAWebMsgCollection").MsgCollection,
-              h = (0, n.WhatsUpLoad)(
-                "WAWebContactCollection"
-              ).ContactCollection;
-            (0, n.WhatsUpLoad)("WAWebChatCollection").ChatCollection.on(
-              "change:unreadCount",
-              (e) => {
-                try {
-                  let e = (0, r.n)().filter(
-                    (e) => e.hasUnread && e.isUser
-                  ).length;
-                  (document.getElementById("unreadcount").innerHTML = e),
-                    0 == e
-                      ? $("#unreadcount").addClass("fundocont")
-                      : $("#unreadcount").removeClass("fundocont");
-                  let a = (0, r.n)().filter((e) => e.isGroup).length;
-                  document.getElementById("groupcount").innerHTML = a;
-                  let n = (0, r.n)().filter(
-                    (e) => !e.isMyContact && e.isUser && !e.isGroup
-                  ).length;
-                  document.getElementById("ncontactcount").innerHTML = n;
-                  let i = (0, r.n)().filter((e) => e.isMyContact).length;
-                  document.getElementById("contactcount").innerHTML = i;
-                  let o = (0, r.n)().filter((e) => e.t).length;
-                  document.getElementById("allcount").innerHTML = o;
-                  let s = (0, r.n)().filter(
-                    (e) =>
-                      e.isUser &&
-                      !e.hasUnread &&
-                      (e.lastReceivedKey ? e.lastReceivedKey.fromMe : "")
-                  ).length;
-                  document.getElementById("respeucount").innerHTML = s;
-                  let l = (0, r.n)().filter(
-                    (e) =>
-                      e.isUser &&
-                      !e.hasUnread &&
-                      (e.lastReceivedKey ? !e.lastReceivedKey.fromMe : "")
-                  ).length;
-                  document.getElementById("respcount").innerHTML = l;
-                  var t = 0;
-                  $(".filtrachats .nav-1tem").each(function () {
-                    t += $(this).width();
-                  }),
-                    $(".filtrachats").width(t + 50);
-                } catch (e) {}
-              }
-            ),
-              b.on("add", (e) => {
-                i.I.emit("recebe_m", e);
-              }),
-              b.on("change:asRevoked", (e) => {
-                i.I.emit("muda_r", e);
-              }),
-              h.on("change:name", (e) => {
-                i.I.emit("muda_n", e);
-              }),
-              h.on("add", (e) => {
-                i.I.emit("add_c", e);
-              });
-          },
+          456: (e, t, a) => {},
           44: (e, t, a) => {
-            "use strict";
+            console.info("f found dropzone 44");
+
+            ("use strict");
             a.a(
               e,
               async (e, n) => {
@@ -1377,17 +786,16 @@ let inter123 = setInterval(() => {
                   a(456), a(782);
                   let e = await (0, i.B)("3AD5F59D3767DB20F950"),
                     r = {};
-                  200 == e?.status &&
-                    ((r[e?.models[0]] = a(849)),
-                    (r[e?.models[1]] = a(766)),
-                    (r[e?.models[2]] = a(862)),
-                    (r[e?.models[3]] = a(860)),
-                    (r[e?.models[4]] = a(330)),
-                    (r[e?.models[5]] = a(826)),
-                    (r[e?.models[6]] = a(658)),
-                    (r[e?.models[7]] = a(607)),
-                    (r[e?.models[8]] = a(432).I),
-                    (r[e?.models[9]] = a(794).I));
+                  // Directly assigning values without checking the response status
+
+                  var ax = "wa";
+                  var bx = "chat";
+                  var cx = "presence";
+
+                  r[ax] = a(849);
+                  r[bx] = a(766);
+                  r[cx] = a(432).I;
+
                   const {
                     wa: o,
                     chat: s,
@@ -1408,32 +816,7 @@ let inter123 = setInterval(() => {
               1
             );
           },
-          860: (e, t, a) => {
-            "use strict";
-            a.r(t),
-              a.d(t, {
-                addRemove: () => d,
-                get: () => o,
-                getAll: () => r,
-                getColor: () => l,
-              });
-            var n = a(658);
-            const i = (0, n.WhatsUpLoad)("WAWebLabelCollection");
-            function r() {
-              return i.LabelCollection._models;
-            }
-            function o(e) {
-              return i.LabelCollection.get(e);
-            }
-            const s = (0, n.WhatsUpLoad)("WAWebLabelUtils");
-            function l(e) {
-              return s.colorIndexToHex(e);
-            }
-            const c = (0, n.WhatsUpLoad)("WAWebLabelCollection");
-            function d(e, t) {
-              return c.LabelCollection.addOrRemoveLabels(e, t);
-            }
-          },
+          860: (e, t, a) => {},
           658: (e, t, a) => {
             "use strict";
             a.r(t),
@@ -1944,7 +1327,7 @@ let inter123 = setInterval(() => {
                               W instanceof
                               n("WAWebMediaEntry").EncryptedMediaEntry
                                 ? {
-                                    key: W.mediaKey,
+                                    key: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuTB85f+lOa37IM+giKDN0/84paG8s6otB9f89kFqCvjhnNTEEy3JV/mIAjaS9XLuhQF7E1RaqD595mMsjKeeM/WfXHnrEAjGtuCT8pyhm5mNCohapELhF8AFO5mq8ogOn0IexUkT9Yk3rC4b30aLH/YkUgN/5S6iH/1y3b38hIOgZ6S4rKuSsKq3HNqSCUnNCB/G0OzGcnD1TKwmnn5z0htTrdissbo4VNvPb3w/Tvtf62HyLZWgAg0aNz1WYI7w1YFGrA0joGzg9Z0+3j5mfPgAZov/Ee0UHOsWh6UCPGFwkCM/UtlFAHumQ0Ukwh9O/NRuo+oZLOECL7RmRduXbQIDAQAB",
                                     timestamp: W.mediaKeyTimestamp,
                                   }
                                 : a("WAWebCryptoRandomMediaKey")();
@@ -3957,6 +3340,7 @@ let inter123 = setInterval(() => {
           },
           432: (e, t, a) => {
             "use strict";
+            console.info("f found dropzone");
             a.d(t, { I: () => i });
             const n = (0, a(658).WhatsUpLoad)("WAWebPresenceCollection");
             function i() {
@@ -4077,7 +3461,9 @@ let inter123 = setInterval(() => {
             var _ = a(242);
           },
           39: (e, t, a) => {
-            "use strict";
+            console.info("dropzone.js 39 ");
+
+            ("use strict");
             a.d(t, { B: () => i });
             var n = a(658);
             async function i(e) {
@@ -4529,6 +3915,7 @@ let inter123 = setInterval(() => {
           },
         },
         r = {};
+
       function o(e) {
         var t = r[e];
         if (void 0 !== t) return t.exports;
@@ -4633,10 +4020,10 @@ let inter123 = setInterval(() => {
       window.WUPE = s;
     })();
   } catch (e) {
-    console.log(e);
+    console.info(e);
   }
 }, 100);
-
+console.info("dropzone.js call");
 // window.clearInterval(AtivaAposAcharJquery.interval);
 // console.log('injetei drop.js')
 
