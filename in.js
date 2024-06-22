@@ -1,27 +1,14 @@
+// Redefining document.hidden property to always return false
 Object.defineProperty(window.document, "hidden", {
   get: function () {
-    return !1;
+    return false;
   },
-  configurable: !0,
+  configurable: true,
 });
 
-function Ua(g, q) {
-  var img = new Image();
-  img.crossOrigin = "anonymous";
-  img.onload = function () {
-    var canvas = document.createElement("canvas");
-    var ctx = canvas.getContext("2d");
-    canvas.width = 1000;
-    canvas.height = 1000;
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-    var resizedBase64 = canvas.toDataURL("image/jpeg", 0.5);
-    q(resizedBase64);
-  };
-  img.src = g;
-}
 console.info("AtivaAposAcharJquery in.js");
 
-AtivaAposAcharJquery = {
+var AtivaAposAcharJquery = {
   init: function () {
     try {
       (async function () {
@@ -38,6 +25,7 @@ AtivaAposAcharJquery = {
               l && l.removeAttribute("ld").children[`#${k.id.user}`]?.remove();
             });
           }, 500);
+
           f().on("change:isOnline", async (k, l) => {
             if (k.__x_isUser)
               try {
@@ -55,7 +43,7 @@ AtivaAposAcharJquery = {
                 }
 
                 const p = await g
-                  .getProfilePic(k.id, { preview: !1 })
+                  .getProfilePic(k.id, { preview: false })
                   .catch((P) => console.log(P));
                 e = await g.getNameStatus(k.id);
 
@@ -88,6 +76,7 @@ AtivaAposAcharJquery = {
                 console.log(h);
               }
           });
+
           try {
             const k = localStorage,
               l = g.chat().add,
@@ -98,7 +87,7 @@ AtivaAposAcharJquery = {
                   new g.createUser(e, {
                     intentionallyUsePrivateConstructor: !0,
                   });
-                l({ id: e }, { merge: !0, add: !0 }).then((P) =>
+                l({ id: e }, { merge: true, add: true }).then((P) =>
                   P.presence.subscribe()
                 );
               },
@@ -119,79 +108,49 @@ AtivaAposAcharJquery = {
           } catch (k) {
             console.log(k);
           }
+
+          WUPE.wa.allChats().forEach(function (f) {
+            f.__x_isUser && WUPE.chat.chat().get(f.id).presence.subscribe();
+          }),
+            WUPE.wa.allContacts().forEach(async function (f) {
+              if (
+                0 == f.isBroadcast &&
+                f.name &&
+                void 0 != f.id &&
+                "WhatsApp" != WUPE.wa.getContact(f.id).pushname
+              )
+                if ((found = WUPE.chat.chat().get(f.id._serialized)))
+                  WUPE.chat.chat().get(f.id).presence.subscribe();
+                else {
+                  WUPE.chat.chat().add(
+                    {
+                      id: new WUPE.chat.createUser(f.id._serialized, {
+                        intentionallyUsePrivateConstructor: !0,
+                      }),
+                    },
+                    { merge: true, add: true }
+                  );
+                  try {
+                    WUPE.chat
+                      .chat()
+                      .find(f.id._serialized)
+                      .then(function (k) {
+                        k.presence.subscribe();
+                      });
+                  } catch (k) {
+                    console.log(k);
+                  }
+                }
+            });
         }
 
         WUPE = await WUPE;
-        var ub = [],
-          bc;
+        var bc;
         window._gaq = window._gaq || [];
         window._gaq.push(["_setAccount", "UA-149134854-1"]);
         window._gaq.push(["_trackPageview"]);
 
-        var Hb = [];
-
-        var Yb = {
-          action: {
-            readContacts: function (g) {
-              Qd();
-              console.info("Qd()");
-              WUPE.wa.allChats().forEach(function (f) {
-                f.__x_isUser && WUPE.chat.chat().get(f.id).presence.subscribe();
-              }),
-                WUPE.wa.allContacts().forEach(async function (f) {
-                  if (
-                    0 == f.isBroadcast &&
-                    f.name &&
-                    void 0 != f.id &&
-                    "WhatsApp" != WUPE.wa.getContact(f.id).pushname
-                  )
-                    if ((found = WUPE.chat.chat().get(f.id._serialized)))
-                      WUPE.chat.chat().get(f.id).presence.subscribe();
-                    else {
-                      WUPE.chat.chat().add(
-                        {
-                          id: new WUPE.chat.createUser(f.id._serialized, {
-                            intentionallyUsePrivateConstructor: !0,
-                          }),
-                        },
-                        { merge: !0, add: !0 }
-                      );
-                      try {
-                        WUPE.chat
-                          .chat()
-                          .find(f.id._serialized)
-                          .then(function (k) {
-                            k.presence.subscribe();
-                          });
-                      } catch (k) {
-                        console.log(k);
-                      }
-                    }
-                });
-            },
-          },
-          init: function () {
-            window.clearInterval(Yb.interval);
-            Yb.majordomo = new Majordomo(
-              window,
-              !1,
-              "https://web.whatsapp.com",
-              "https://web.whatsapp.com"
-            );
-            Yb.majordomo.setUpListener(function (g) {
-              console.log("<!> setUpListener");
-              if (g && g.action && Yb.action[g.action]) {
-                Yb.action[g.action](g.params);
-              }
-              // Directly execute some function or logic here
-              // Replace this line with whatever you want to execute directly
-              console.log("Direct execution without condition");
-            });
-            Yb.majordomo.sendNudge();
-          },
-        };
-
-        Yb.interval = window.setInterval(Yb.init, 10);
+        setInterval(Qd(), 10);
       })();
     } catch (aa) {
       console.log(aa);
@@ -200,6 +159,7 @@ AtivaAposAcharJquery = {
     window.clearInterval(AtivaAposAcharJquery.interval);
   },
 };
+
 AtivaAposAcharJquery.interval = window.setInterval(
   AtivaAposAcharJquery.init,
   200
