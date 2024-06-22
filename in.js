@@ -1,4 +1,3 @@
-// Redefining document.hidden property to always return false
 Object.defineProperty(window.document, "hidden", {
   get: function () {
     return false;
