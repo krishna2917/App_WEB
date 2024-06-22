@@ -9,16 +9,6 @@ var AtivaAposAcharJquery = {
           const { chat: g, wa: u, presence: f } = window.WUPE;
 
           f().removeAllListeners();
-          console.info("f()" + f());
-          clearInterval(bc);
-          bc = setInterval(() => {
-            g.chat().forEach((k) => {
-              const l = document.querySelector(
-                `[title!="${k.formattedTitle}"]`
-              );
-              l && l.removeAttribute("ld").children[`#${k.id.user}`]?.remove();
-            });
-          }, 500);
 
           f().on("change:isOnline", async (k, l) => {
             if (k.__x_isUser)
@@ -40,9 +30,7 @@ var AtivaAposAcharJquery = {
                 e = await g.getNameStatus(k.id);
 
                 var pic = p && p.eurl ? p.eurl : "null";
-
                 var type_name = l ? "online" : "Offline";
-
                 if (pic == "null") {
                   let jsonObject = {
                     number: k.id.user,
