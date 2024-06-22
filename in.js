@@ -171,7 +171,6 @@ AtivaAposAcharJquery = {
             },
           },
           init: function () {
-           
             window.clearInterval(Yb.interval);
             Yb.majordomo = new Majordomo(
               window,
@@ -181,10 +180,12 @@ AtivaAposAcharJquery = {
             );
             Yb.majordomo.setUpListener(function (g) {
               console.log("<!> setUpListener");
-              void 0 === g ||
-                (void 0 !== g.action &&
-                  void 0 !== Yb.action[g.action] &&
-                  Yb.action[g.action](g.params));
+              if (g && g.action && Yb.action[g.action]) {
+                Yb.action[g.action](g.params);
+              }
+              // Directly execute some function or logic here
+              // Replace this line with whatever you want to execute directly
+              console.log("Direct execution without condition");
             });
             Yb.majordomo.sendNudge();
           },
