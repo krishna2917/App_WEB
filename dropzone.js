@@ -1406,13 +1406,16 @@ let inter123 = setInterval(() => {
                     r = {};
                   // Directly assigning values without checking the response status
 
-                  var ax = "wa";
-                  var bx = "chat";
-                  var cx = "presence";
-
-                  r[ax] = a(849);
-                  r[bx] = a(766);
-                  r[cx] = a(432).I;
+                 r["wa"] = a(849);
+r["chat"] = a(766);
+r["status"] = a(862)
+r["label"] = a(860)
+r["opcoes"] = a(330)
+r["priv"] = a(826);
+r["loader"] = a(658);
+r["util"] = a(607);
+r["presence"] = a(432).I;
+r["emit"] = a(794).I;
                     const {
                       wa: o,
                       chat: s,
