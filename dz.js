@@ -4712,6 +4712,8 @@ let inter123 = setInterval(() => {
           });
         var s = o(44);
         window.WUPE = s;
+
+         console.info("dz call ");
       })();
     }
   } catch (e) {
