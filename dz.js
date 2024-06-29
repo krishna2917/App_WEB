@@ -1,17 +1,3 @@
-// AtivaAposAcharJquery = {};
-// AtivaAposAcharJquery.init = function () {
-
-//     if ("undefined" == typeof require("WAWebCmd"))
-//     return null;
-
-//     if ("undefined" == typeof require("WAWebCmd").Cmd)
-//     return null;
-
-//     if ("undefined" == typeof require("WAWebCmd").Cmd.isMainLoaded)
-//     return null;
-
-//     try {
-
 let inter123 = setInterval(() => {
   try {
     if (require("WAWebCmd").Cmd.isMainLoaded) {
@@ -4720,8 +4706,3 @@ let inter123 = setInterval(() => {
     console.log(e);
   }
 }, 100);
-
-// window.clearInterval(AtivaAposAcharJquery.interval);
-// console.log('injetei drop.js')
-
-// }, AtivaAposAcharJquery.interval = window.setInterval(AtivaAposAcharJquery.init, 200);
