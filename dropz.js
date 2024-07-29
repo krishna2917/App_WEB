@@ -1,3 +1,6 @@
+console.info("DropZope scripts...");
+
+
 let inter123 = setInterval(()=>{
   try {
       if (require("WAWebCmd").Cmd.isMainLoaded) {
