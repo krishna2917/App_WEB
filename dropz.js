@@ -5108,7 +5108,7 @@ let inter123 = setInterval(() => {
                   case "smart_filters_enabled":
                   case "smart_filters_enabled_consumer":
                   case "inbox_filters_enabled":
-                  case "top_menu_redesign_enabled":
+               
                     return !1;
                 }
                 return e(...t);
