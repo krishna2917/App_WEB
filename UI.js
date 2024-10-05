@@ -7,6 +7,8 @@ var status_view_Check = false;
 var side_bar_Check = false;
 
 observer("._aigu", ".x1jchvi3", back_click);
+observer("._aiwn", ".landing-header", remove_logo);
+
 
 function checkChildClass() {
   var mainElement = document.querySelector("._aiwn");
@@ -137,6 +139,14 @@ function side_bar() {
     });
   });
 }
+
+function remove_logo() {
+   var element = document.querySelector('.landing-header');
+    if (element) {
+        element.style.display = 'none';
+    }
+}
+
 function back_click() {
   var _ajv1 = document.querySelectorAll("._ajv1");
   _ajv1.forEach((element) => {
