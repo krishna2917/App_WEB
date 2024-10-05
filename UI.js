@@ -375,6 +375,7 @@ function mainload() {
   MultiChilClass(mainClass, childClasses, adsbox);
 }
 function loginpage() {
+  remove_logo();
   loginClassCheck = true;
   var landingWrapper = document.querySelector(".landing-wrapper");
   if (landingWrapper) {
